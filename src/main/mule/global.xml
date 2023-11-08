@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd  http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+    <http:listener-config name="e-test-jvizcainoolivares-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="${secure::http.port}" readTimeout="50000" />
+    </http:listener-config>
+    <apikit:config name="e-test-jvizcainoolivares-config" api="resource::08bd7d47-9ba0-4e5e-be63-5938d02ae61e:e-test-jvizcainoolivares:1.0.0:raml:zip:e-test-jvizcainoolivares.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <global-property doc:name="Global Property" doc:id="a5011bcf-47f4-4ca3-a9bc-526c20387289" name="env" value="dev" />
+    <http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="e282f2cf-6277-49ff-9ce7-69c4b667281e" basePath="${secure::process.basePath}">
+        <http:request-connection host="${secure::process.host}" port="${secure::process.port}" />
+        <http:default-headers>
+            <http:default-header key="client_id" value="${secure::process.credentials.client_id}" />
+            <http:default-header key="client_secret" value="${secure::process.credentials.client_secret}" />
+        </http:default-headers>
+    </http:request-config>
+    <secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="d3924136-8b74-474c-a150-7574d4cfef0d" file="properties/${env}-secure-config.yaml" key="${key}">
+        <secure-properties:encrypt algorithm="Blowfish" />
+    </secure-properties:config>
+	<api-gateway:autodiscovery apiId="19075047" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="272109a8-188d-47a6-b792-94b435c3abce" flowRef="e-test-jvizcainoolivares-main" />
+</mule>

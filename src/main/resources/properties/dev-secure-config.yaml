@@ -1,0 +1,12 @@
+http:
+  port: "8081"
+    
+process:
+  host: "p-test-jvizcainoolivares.us-e2.cloudhub.io"
+  port: "80"
+  basePath: "/api"
+  path:
+    accounts: "/accounts"
+  credentials:
+    client_id: "![D+QUg+Smow4rs82rvLv5ws7giKJD5vtXDA086Va/pZfJqkBEFMHelw==]"
+    client_secret: "![r5ldAwLZLOgNhgCQeIidkqZ/QWK8XaZwxtS+o+ZoabFHae2TEfwkgQ==]"
