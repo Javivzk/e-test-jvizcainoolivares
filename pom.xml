@@ -15,7 +15,7 @@
 
 		<app.runtime>4.4.0-20230918</app.runtime>
 		<mule.maven.plugin.version>3.8.2</mule.maven.plugin.version>
-		<app.name>p-test-jvizcainoolivares-git-pre</app.name>
+		<app.name>e-test-jvizcainoolivares-git-pre</app.name>
 		<env>pre</env>
 		<munit.version>2.3.13</munit.version>
 	</properties>
